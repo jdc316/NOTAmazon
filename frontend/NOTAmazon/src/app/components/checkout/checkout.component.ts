@@ -188,25 +188,23 @@ export class CheckoutComponent implements OnInit {
                 purchase!.billingAddress!.country = billingCountry;
               
                 // populate purchase - order and orderItems
-                purchase.order = order;
+                purchase.productOrder = order;
                 purchase.orderItems = orderItems;
             
-                console.log(purchase);
-                this.resetCart();
                 // call REST API via the CheckoutService
-                // this.checkoutService.placeOrder(purchase).subscribe({
-                //     next: response => {
-                //       alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+                this.checkoutService.placeOrder(purchase).subscribe({
+                    next: response => {
+                      alert(`Your order has been received.\nOrder tracking number: ${response.trackingNumber}`);
             
-                //       // reset cart
-                //       this.resetCart();
+                      // reset cart
+                      this.resetCart();
             
-                //     },
-                //     error: err => {
-                //       alert(`There was an error: ${err.message}`);
-                //     }
-                //   }
-                // );
+                    },
+                    error: err => {
+                      alert(`There was an error: ${err.message}`);
+                    }
+                  }
+                );
             
               }
 

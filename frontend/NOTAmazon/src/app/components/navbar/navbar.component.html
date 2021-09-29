@@ -1,0 +1,65 @@
+<mat-sidenav-container class="sidenav-container" style="background-color: rgb(218, 218, 218);">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      style="border-right: none;">
+    <mat-toolbar color="primary" style="background: #3f51b5;">
+      <a [routerLink]="['/home']" routerLinkActive="router-link-active" style="text-decoration: none; color: white">NOTAmazon</a>
+    </mat-toolbar>
+    <mat-toolbar >Trending</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#" [routerLink]="['/best-sellers']" routerLinkActive="router-link-active">Best Sellers</a>
+      <a mat-list-item href="#" [routerLink]="['/best-sellers']" routerLinkActive="router-link-active">New Releases</a>
+    </mat-nav-list>
+    <mat-toolbar style="margin-top: 2vh; ">Shop By Category</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#" [routerLink]="['/category/1']" routerLinkActive="router-link-active">Coffee Mugs</a>
+      <a mat-list-item href="#" [routerLink]="['/category/2']" routerLinkActive="router-link-active">Books</a>
+      <a mat-list-item href="#" [routerLink]="['/category/3']" routerLinkActive="router-link-active">Keyboards</a>
+      <a mat-list-item href="#" [routerLink]="['/category/4']" routerLinkActive="router-link-active">Monitors</a>
+      <a mat-list-item href="#" [routerLink]="['/category/5']" routerLinkActive="router-link-active">Cellphones</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      
+      <div style="font-size: 12px; margin: 0 auto;">
+        <form>
+          <mat-form-field style="width: 30vw;">
+            <mat-label>Search</mat-label>
+            <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="this.productSearch" (keyup.enter)="searchProducts()" matInput placeholder="Ex. Coffee Mugs">
+          </mat-form-field>
+        </form>
+      </div>
+      <div>
+        <button (click)="handleCartNav()"
+         *ngIf="cartCost != 0" mat-flat-button >
+          {{cartCost | currency: 'USD'}}
+        </button>
+        <button
+        type="button"
+        aria-label="Cart Button"
+        mat-icon-button
+        (click)="handleCartNav()">
+        <mat-icon [matBadgeHidden]="numberOfItemsInCart == 0" matBadge="{{numberOfItemsInCart}}" 
+        matBadgeColor="warn" matBadgeSize="small" 
+        aria-label="Cart icon">shopping_cart</mat-icon>
+      </button>
+      </div>
+      
+    </mat-toolbar>
+    <div class="container" style="margin: 20px; ">
+      <router-outlet></router-outlet>
+    </div>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

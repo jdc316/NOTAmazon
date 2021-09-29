@@ -1,0 +1,35 @@
+<div class="container">
+  <div *ngFor="let item of cartItems" fxLayout="row wrap" fxLayoutGap="16x grid" style="margin-bottom: 10px;">
+    <mat-card class="card">
+      <mat-card-header style="height: 10px;">
+        <mat-card-title class="scalable-text"></mat-card-title>
+      </mat-card-header>
+      <img mat-card-image class="img align-middle" src="{{item.imageUrl}}" height="200" width="150">
+      <mat-card-content style="height: 150px; text-align: right;">
+        <h3> <b>{{item.name}}</b></h3>
+        <p>Quantity: </p>
+        <div style="margin: 0 0 12px; display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;">
+          <p style="display: flex;
+          align-items: center;
+          float: right"><a class="hoverHand" (click)="decrementQuantity(item)"><mat-icon aria-label="decrease cart quantity">remove</mat-icon></a>{{item.quantity}}<a class="hoverHand" (click)="incrementQuantity(item)"><mat-icon aria-label="increase cart quantity">add</mat-icon></a></p>
+          
+        </div>
+        <p style="margin-top: 10px; clear: right;">Cost Per Item: {{item.unitPrice | currency: 'USD'}}</p>
+      </mat-card-content>
+      <mat-card-actions style="height: 50px; text-align: right;">
+        <button (click)="remove(item)" mat-raised-button color="warn">Remove</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <hr style="width: 60%; margin: 0px;">
+  <div style="text-align: right; width: 60%;">
+    <h3>Total Quantity: {{totalQuantity}}</h3>
+    <h3>Shipping: FREE</h3>
+    <h3><b>Total Price: {{totalPrice}}</b></h3>
+    <button routerLink="/checkout" mat-raised-button color="primary">Checkout</button>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+mat-form-field {
+    margin: 10px;
+}
+
+.marg-top {
+    margin-top: 40px;
+}
+
+mat-grid-tile {
+    outline: black;
+    outline-style: auto;
+}
+
+.checkbox {
+    font-size: x-small;
+    margin-left: 10px;
+}

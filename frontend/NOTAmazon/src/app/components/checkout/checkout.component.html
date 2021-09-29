@@ -1,0 +1,203 @@
+<div *ngIf="checkoutFormGroup !== undefined" class="container">
+  
+  <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+    <mat-grid-list cols="3" rowHeight="600px" [gutterSize]="'10px'" col>
+     
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.color]="'black'" [style.backgroundColor]="'transparent'">Customer Info</mat-grid-tile-header>
+        <div formGroupName="customer" class="customerInfo">
+          <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Josh" formControlName="firstName" required>
+            <mat-error *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+              first name is required
+            </mat-error>
+            <mat-error *ngIf="firstName?.errors?.minlength">
+              first name must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill"> 
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Cunningham" formControlName="lastName" required>
+            <mat-error *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+              last name is required
+            </mat-error>
+            <mat-error *ngIf="lastName?.errors?.minlength">
+              last name must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill"> 
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="example@email.com" formControlName="email" required>
+            <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+              email is required
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.pattern">
+              email must be a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.color]="'black'" [style.backgroundColor]="'transparent'">Billing Address</mat-grid-tile-header>
+        <div formGroupName="billingAddress" class="billingAddress marg-top">
+          <mat-form-field appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="1212 West Midlothian Street" formControlName="street" required>
+            <mat-error *ngIf="billingAddressStreet?.invalid && (billingAddressStreet?.dirty || billingAddressStreet?.touched)">
+              Street is required
+            </mat-error>
+            <mat-error *ngIf="billingAddressStreet?.errors?.minlength">
+              billing address must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Richmond" formControlName="city" required>
+            <mat-error *ngIf="billingAddressCity?.invalid && (billingAddressCity?.dirty || billingAddressCity?.touched)">
+              city is required
+            </mat-error>
+            <mat-error *ngIf="billingAddressCity?.errors?.minlength">
+              city must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Virginia" formControlName="state" required>
+            <mat-error *ngIf="billingAddressState?.invalid && (billingAddressState?.dirty || billingAddressState?.touched)">
+              state is required
+            </mat-error>
+            <mat-error *ngIf="billingAddressState?.errors?.minlength">
+              state must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Zip Code</mat-label>
+            <input matInput placeholder="23236" formControlName="zipCode" required>
+            <mat-error *ngIf="billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty || billingAddressZipCode?.touched)">
+              zip code is required
+            </mat-error>
+            <mat-error *ngIf="billingAddressZipCode?.errors?.minlength">
+              zip code must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.color]="'black'" [style.backgroundColor]="'transparent'">Review Order</mat-grid-tile-header>
+        <div class="reviewOrder">
+          <p>Total Quantity: {{totalQuantity}}</p>
+          <p>Shipping: FREE</p>
+          <p><b>Total Price: {{totalPrice}}</b></p>
+          <button type="submit" mat-raised-button color="primary">Purchase</button>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.color]="'black'" [style.backgroundColor]="'transparent'">Shipping Address</mat-grid-tile-header>
+        <div formGroupName="shippingAddress" class="shippingAddress marg-top">
+          <mat-form-field appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="1212 West Midlothian Street" formControlName="street" required>
+            <mat-error *ngIf="shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty || shippingAddressStreet?.touched)">
+              Street is required
+            </mat-error>
+            <mat-error *ngIf="shippingAddressStreet?.errors?.minlength">
+              shipping address must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Richmond" formControlName="city" required>
+            <mat-error *ngIf="shippingAddressCity?.invalid && (shippingAddressCity?.dirty || shippingAddressCity?.touched)">
+              city is required
+            </mat-error>
+            <mat-error *ngIf="shippingAddressCity?.errors?.minlength">
+              city must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Virginia" formControlName="state" required>
+            <mat-error *ngIf="shippingAddressState?.invalid && (shippingAddressState?.dirty || shippingAddressState?.touched)">
+              state is required
+            </mat-error>
+            <mat-error *ngIf="shippingAddressState?.errors?.minlength">
+              state must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Zip Code</mat-label>
+            <input matInput placeholder="23236" formControlName="zipCode" required>
+            <mat-error *ngIf="shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty || shippingAddressZipCode?.touched)">
+              zip code is required
+            </mat-error>
+            <mat-error *ngIf="shippingAddressZipCode?.errors?.minlength">
+              zip code must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-checkbox [color]="'primary'" class="checkbox" 
+          (change)="copyShippingAddressToBillingAddress($event)">
+            Shipping Address is the same as billing address</mat-checkbox>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header [style.color]="'black'" [style.backgroundColor]="'transparent'">Credit Card</mat-grid-tile-header>
+        <div formGroupName="creditCard" class="creditCard marg-top">
+          <mat-form-field appearance="fill">
+            <mat-label>Card Type</mat-label>
+            <mat-select>
+              <mat-option value="one">VISA</mat-option>
+              <mat-option value="two">Mastercard</mat-option>
+              <mat-option value="one">American Express</mat-option>
+              <mat-option value="two">Discover</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Name on Card</mat-label>
+            <input matInput placeholder="John Doe" formControlName="nameOnCard" required>
+            <mat-error *ngIf="creditCardNameOnCard?.errors?.required || creditCardNameOnCard?.errors?.notOnlyWhitespace">
+              Name is required
+            </mat-error>
+            <mat-error *ngIf="creditCardNameOnCard?.errors?.minlength">
+              Name must be at least 2 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Card Number</mat-label>
+            <input matInput formControlName="cardNumber" required>
+            <mat-error *ngIf="creditCardNumber?.invalid && (creditCardNumber?.dirty || creditCardNumber?.touched)">
+              credit card number is required
+            </mat-error>
+            <mat-error *ngIf="creditCardNumber?.errors?.pattern">
+              card number must be at least 16 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Security Code</mat-label>
+            <input matInput formControlName="securityCode" required>
+            <mat-error *ngIf="creditCardSecurityCode?.errors?.required">
+              security code is required
+            </mat-error>
+            <mat-error *ngIf="creditCardSecurityCode?.errors?.pattern">
+              security code must be at least 3 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Expiration Month</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let month of creditCardMonths" value="{{month}}">{{month}}</mat-option>
+            </mat-select>
+            
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Expiration Year</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let year of creditCardYears" value="{{year}}">{{year}}</mat-option>
+            </mat-select>
+            
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

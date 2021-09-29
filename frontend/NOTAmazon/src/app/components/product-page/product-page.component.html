@@ -1,0 +1,15 @@
+<mat-card class="card">
+  <mat-card-header style="height: 10px;">
+    <mat-card-title class="scalable-text"></mat-card-title>
+  </mat-card-header>
+  <img mat-card-image class="img align-middle" src="{{product.imageUrl}}" height="500" width="150">
+  <mat-card-content style="height: 250px; text-align: right;">
+    <h3> <b>{{product.name}}</b></h3>
+    <h4><b>Product Description</b></h4>
+    <p>{{product.description}}</p>
+    <p>{{product.unitPrice | currency: 'USD'}}</p>
+  </mat-card-content>
+  <mat-card-actions style="height: 150px; text-align: right;">
+    <button (click)="addToCart(product)" mat-raised-button color="primary">Add To Cart</button>
+  </mat-card-actions>
+</mat-card>

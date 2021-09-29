@@ -1,0 +1,54 @@
+<!-- <table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Units in Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of this.products">
+      <td><img class="img align-middle" src="{{product.imageUrl}}" height="100" width="100"></td>
+      <td class="img align-middle">{{product.name}}</td>
+      <td class="img align-middle">{{product.unitPrice | currency: 'USD'}}</td>
+      <td class="img align-middle">{{product.unitsInStock}}</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- <mat-grid-list >
+  <mat-card *ngFor="let product of this.products" class="card">
+    <mat-card-header>
+      <mat-card-title>{{product.name}}</mat-card-title>
+    </mat-card-header>
+    
+  
+  </mat-card>
+  
+</mat-grid-list> -->
+
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex.xs="100%" *ngFor="let product of this.products">
+      <mat-card class="card">
+        <mat-card-header (click)="handleProductClick(product)" style="height: 10px;">
+          <mat-card-title class="scalable-text"></mat-card-title>
+        </mat-card-header>
+        <img (click)="handleProductClick(product)" mat-card-image class="img align-middle" src="{{product.imageUrl}}" height="200" width="150">
+        <mat-card-content (click)="handleProductClick(product)" style="height: 50px; text-align: right;">
+          <h3> <b>{{product.name}}</b></h3>
+          <p>{{product.unitPrice | currency: 'USD'}}</p>
+        </mat-card-content>
+        <mat-card-actions style="height: 50px; text-align: right;">
+          <button (click)="addToCart(product)" mat-raised-button color="primary">Add To Cart</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<mat-paginator [length]="totalElements"
+              [pageSize]="pageSize"
+              aria-label="Select page"
+              (page)="handlePageChange($event)">
+</mat-paginator>
